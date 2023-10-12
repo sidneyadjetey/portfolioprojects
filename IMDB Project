@@ -1,0 +1,47 @@
+SELECT * FROM CopyofIMDBTop250MoviesCleanedversionIMDBTop250Movies
+ALTER TABLE "CopyofIMDBTop250MoviesCleanedversionIMDBTop250Movies"RENAME TO Movies
+
+ALTER TABLE CopyofIMDBTop250MoviesCleanedversionIMDBTop250Movies RENAME TO Movies
+
+SELECT name, budget
+FROM Movies
+ORDER BY budget DESC
+LIMIT 5
+
+UPDATE Movies
+SET budget = REPLACE(budget, 2400000000, 23500000)
+
+UPDATE Movies
+SET budget = REPLACE(budget, 2400000000, 23500000)
+
+SELECT name,rating
+FROM Movies
+ORDER BY rating DESC
+LIMIT 5
+
+SELECT name,box_office
+FROM Movies
+GROUP BY name
+ORDER BY box_office DESC
+LIMIT 5
+
+SELECT name,budget box_office, (box_office-budget) AS profit
+FROM Movies
+ORDER BY profit	DESC
+LIMIT 10
+
+SELECT genre, COUNT(*) AS genre_count
+FROM (
+  SELECT TRIM(value) AS genre
+  FROM Movies
+  CROSS JOIN json_each('["' || REPLACE(genre, ',', '","') || '"]')
+)
+GROUP BY genre
+ORDER BY genre_count DESC
+LIMIT 5
+
+SELECT directors, COUNT(*) AS Number_of_movies
+FROM Movies
+GROUP BY directors
+ORDER BY COUNT(*) DESC
+LIMIT 10

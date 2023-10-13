@@ -1,0 +1,5 @@
+ SELECT directors, COUNT(*) AS Number_of_movies
+ FROM Movies
+ GROUP BY directors
+ ORDER BY COUNT(*) DESC
+ Limit 10

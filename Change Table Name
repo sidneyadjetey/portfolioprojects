@@ -1,0 +1,1 @@
+ALTER TABLE  IMDBTop250MoviesCleanedIMDBTop250Movies RENAME TO Movies
